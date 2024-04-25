@@ -1,0 +1,22 @@
+#goal
+#The goal specifies the desired trajectory to be tracked and the id of the controller used to track this trajectory
+
+string traj_type "bezier"  #choices are "bezier" (default value), "polynomial", "waypoints", "ros_topic"
+px4_msgs/Trajectory traj
+float32 start_time
+float32 end_time
+
+#Sampling time period between two successive waypoints on the predefined trajectory. 
+#If the trajectory is provided using a ros topic then this parameter gives time between two successsive waypoints publish by the mentioned ros topic
+float32 sampling_time  
+
+string ros_topic_name #expected rostopic type is px4_msgs/TrajectoryWaypoint
+float32[3] goal_pos
+string controller_id "" #choices= "" (default px4 tracking controller), "geometric_se3_controller"
+
+---
+#result
+bool is_goal_accepted
+
+---
+#feedback
