@@ -1,6 +1,5 @@
 #goal
-#The goal specifies the desired trajectory to be tracked and the id of the controller used to track this trajectory
-
+#The goal is to specify the desired trajectory to be tracked and the id of the controller used to track this trajectory
 string traj_type "bezier"  #choices are "bezier" (default value), "polynomial", "waypoints", "ros_topic"
 px4_msgs/Trajectory traj
 float32 start_time
@@ -16,7 +15,9 @@ string controller_id "" #choices= "" (default px4 tracking controller), "geometr
 
 ---
 #result
-bool is_goal_accepted
+bool is_action_completed
+string out_msg ''
 
 ---
 #feedback
+

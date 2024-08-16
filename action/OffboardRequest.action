@@ -1,0 +1,38 @@
+#goal
+#The goal is to send an action to perform using offboard control mode on PX4/FC
+string action "" #"set_offboard_mode", "arm", "disarm", "takeoff", "land", "return_home", "track_traj"
+float32 action_time_out
+bool is_result_requested 1
+bool is_feedback_requested 0
+
+uint8 offboard_mode_input_type 1
+#Reference altitude for the takeoff and return home action (Expects in NED frame, i.e., altitude should be negative)
+float32 takeoff_altitude -2.0
+float32 return_home_altitude -10.0
+
+#Reference pose for hover action
+geometry_msgs/Pose hover_pose
+float32 hover_time 5.0
+
+#if action=="traj_track" specify the desired trajectory to be tracked and the id of the controller used to track this trajectory
+string traj_type "bezier"  #choices are "bezier" (default value), "circle", "polynomial", "waypoints", "ros_topic"
+px4_msgs/Trajectory traj
+string traj_data_file
+float32 start_time
+float32 end_time
+
+#Sampling time period between two successive waypoints on the predefined trajectory. 
+#If the trajectory is provided using a ros topic then this parameter gives time between two successsive waypoints publish by the mentioned ros topic
+float32 sampling_time  
+
+string ros_topic_name #expected rostopic type is px4_msgs/TrajectoryWaypoint
+string controller_id "" #choices= "" (default px4 tracking controller), "geometric_se3_controller"
+
+---
+#result
+bool is_action_completed
+string out_msg ''
+
+---
+#feedback
+
